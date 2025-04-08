@@ -226,6 +226,7 @@ export const createProperty = async (req: Request, res: Response): Promise<void>
       }
     });
 
+    // console.log(geocodingResponse, 'location');
     const [longitude, latitude] =
       geocodingResponse.data[0]?.lon && geocodingResponse.data[0]?.lat
         ? [parseFloat(geocodingResponse.data[0]?.lon), parseFloat(geocodingResponse.data[0]?.lat)]
@@ -264,6 +265,7 @@ export const createProperty = async (req: Request, res: Response): Promise<void>
 
     res.status(201).json(newProperty);
   } catch (error: any) {
+    console.log(error);
     res.status(500).json({
       message: `Error creating Property: ${error?.message}`
     });
